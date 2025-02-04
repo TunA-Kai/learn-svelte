@@ -3,7 +3,7 @@
   import { toggleMode, mode } from 'mode-watcher';
 </script>
 
-<div class="relative flex items-center justify-center">
+<div class="relative flex scale-[0.75] items-center justify-center">
   <input
     type="checkbox"
     class="absolute opacity-0"
