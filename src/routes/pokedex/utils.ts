@@ -12,7 +12,7 @@ const colorNames: Record<string, number[]> = {
   orange: [255, 165, 0],
   purple: [128, 0, 128],
   pink: [255, 192, 203],
-  brown: [165, 42, 42],
+  brown: [165, 42, 42]
 };
 
 export function getTextColor(backgroundColor: string) {

@@ -12,7 +12,7 @@
     <Icon />
   </Popover.Trigger>
   <Popover.Content
-    class="h-[calc(100vh_-_40px)] md:h-auto w-screen rounded-none"
+    class="h-[calc(100vh_-_40px)] w-screen rounded-none md:h-auto"
     sideOffset={0}
   >
     <div class="flex items-center justify-between">

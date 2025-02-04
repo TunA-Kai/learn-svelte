@@ -8,7 +8,7 @@ export const load: PageServerLoad = async ({ params }) => {
   const fetchPokemonDetails = async (pokemonName: string) => {
     const [pokemon, species] = await Promise.all([
       P.getPokemonByName(pokemonName),
-      P.getPokemonSpeciesByName(pokemonName),
+      P.getPokemonSpeciesByName(pokemonName)
     ]);
 
     return { pokemon, color: species.color.name };
@@ -21,6 +21,6 @@ export const load: PageServerLoad = async ({ params }) => {
   );
 
   return {
-    data: pokeDetails,
+    data: pokeDetails
   };
 };

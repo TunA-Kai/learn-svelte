@@ -4,7 +4,7 @@
   const routes = ['/pokedex', '/movies'];
 </script>
 
-<div class="flex flex-col gap-4 m-8 w-fit">
+<div class="m-8 flex w-fit flex-col gap-4">
   {#each routes as route}
     <a href={route} class={buttonVariants()}>Go to {route}</a>
   {/each}

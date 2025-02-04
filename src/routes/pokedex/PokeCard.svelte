@@ -20,10 +20,10 @@
   style:color={textColor}
 >
   <!-- Poke image -->
-  <img src={imgSrc} alt={name} class="w-36 h-36 -translate-y-20 mx-auto" />
+  <img src={imgSrc} alt={name} class="mx-auto h-36 w-36 -translate-y-20" />
 
   <!-- Poke name -->
-  <h2 class="text-xl -translate-y-5">{name}</h2>
+  <h2 class="-translate-y-5 text-xl">{name}</h2>
 
   <!-- Poke number -->
   <p class="-translate-y-3">#{number.padStart(3, '0')}</p>
@@ -38,7 +38,7 @@
 
 {#snippet typeChip(title: string)}
   <span
-    class="bg-white rounded-full px-2 py-1 text-xs font-semibold text-black"
+    class="rounded-full bg-white px-2 py-1 text-xs font-semibold text-black"
   >
     {title}
   </span>

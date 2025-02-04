@@ -35,12 +35,12 @@
   }
 </script>
 
-<main class="bg-slate-200 min-h-screen p-8">
-  <div class="max-w-5xl mx-auto">
+<main class="min-h-screen bg-slate-200 p-8">
+  <div class="mx-auto max-w-5xl">
     <PokedexLogo />
 
     <div
-      class="flex gap-4 items-center mt-8 bg-white py-2 px-4 rounded-lg shadow-md"
+      class="mt-8 flex items-center gap-4 rounded-lg bg-white px-4 py-2 shadow-md"
     >
       <SearchIcon />
       <input
@@ -55,7 +55,7 @@
 
     <div class="flex justify-between">
       <Select.Root type="single" bind:value={sort}>
-        <Select.Trigger class="w-[200px] mt-4">
+        <Select.Trigger class="mt-4 w-[200px]">
           {sort === 'lowest' ? 'Lowest Number First' : 'Highest Number First'}
         </Select.Trigger>
         <Select.Content>
@@ -65,7 +65,7 @@
       </Select.Root>
 
       <Select.Root type="single" bind:value={filter}>
-        <Select.Trigger class="w-[200px] mt-4">
+        <Select.Trigger class="mt-4 w-[200px]">
           {filter}
         </Select.Trigger>
         <Select.Content>
@@ -74,7 +74,7 @@
       </Select.Root>
     </div>
 
-    <ul class="grid grid-cols-4 gap-x-4 gap-y-24 mt-24">
+    <ul class="mt-24 grid grid-cols-4 gap-x-4 gap-y-24">
       {#each pokemonList as { pokemon: { sprites, name, id, types }, color } (id)}
         <PokeCard
           imgSrc={sprites.other['official-artwork'].front_default || ''}

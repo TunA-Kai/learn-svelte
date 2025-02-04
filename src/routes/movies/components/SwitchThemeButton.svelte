@@ -3,17 +3,17 @@
   import { toggleMode, mode } from 'mode-watcher';
 </script>
 
-<div class="flex items-center justify-center relative">
+<div class="relative flex items-center justify-center">
   <input
     type="checkbox"
-    class="opacity-0 absolute"
+    class="absolute opacity-0"
     id="theme-switch"
     onclick={toggleMode}
   />
 
   <label
     class={[
-      'flex items-center justify-between p-2 rounded-full relative h-10 w-20 cursor-pointer bg-[#1792c7]',
+      'relative flex h-10 w-20 cursor-pointer items-center justify-between rounded-full bg-[#1792c7] p-2',
       $mode
     ]}
     for="theme-switch"
@@ -22,7 +22,7 @@
     <SunIcon />
     <div
       class={[
-        'bg-white absolute rounded-full top-[5px] left-[5px] h-[30px] w-[30px] transition-all',
+        'absolute left-[5px] top-[5px] h-[30px] w-[30px] rounded-full bg-white transition-all',
         $mode === 'dark' ? 'translate-x-10' : 'translate-x-0'
       ]}
     ></div>
