@@ -7,8 +7,8 @@
   let { children }: LayoutProps = $props();
 </script>
 
-<ModeWatcher />
-<nav class="flex h-10 items-center justify-between px-2">
+<ModeWatcher defaultMode="dark" />
+<nav class="flex h-10 items-center justify-between px-4">
   <NavPopup />
   <a href="/">
     <!-- NOTE: The filter properties in CSS are applied in order, and by default, Tailwind applies brightness before invert. Because of this, you need to write the custom style as a single combined filter rule instead of applying each property separately. -->

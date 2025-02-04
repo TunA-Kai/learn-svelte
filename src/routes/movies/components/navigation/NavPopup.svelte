@@ -3,8 +3,9 @@
   import { Menu, X } from 'lucide-svelte';
   import { page } from '$app/state';
   import SwitchThemeButton from '../SwitchThemeButton.svelte';
+  import { mode } from 'mode-watcher';
 
-  let open = $state(true);
+  let open = $state(false);
   let Icon = $derived(open ? X : Menu);
 
   const pathname = $derived(page.url.pathname.split('/')[2] || '');
@@ -27,14 +28,19 @@
   <Popover.Trigger class="h-10">
     <Icon />
   </Popover.Trigger>
+
   <Popover.Content
-    class="h-[calc(100vh_-_40px)] w-screen rounded-none p-0 md:h-auto"
+    class={[
+      'w-screen overflow-hidden rounded-none border-none p-0 transition-all duration-500 md:h-auto',
+      open ? 'h-[calc(100vh_-_40px)] opacity-100' : 'h-0 opacity-0'
+    ]}
     sideOffset={0}
+    forceMount
   >
     <div
-      class="flex items-center justify-between bg-input py-1 pl-8 pr-4 text-sm"
+      class="flex items-center justify-between bg-input py-1 pl-6 pr-4 text-sm"
     >
-      Switch to Light Theme
+      Switch to {$mode === 'dark' ? 'Light' : 'Dark'} Theme
       <SwitchThemeButton />
     </div>
     <div class="flex flex-col">
@@ -42,7 +48,7 @@
         <a
           href={'/movies/' + href}
           class={[
-            'hover:text-primary-500 border-b border-border py-3 pl-8 md:font-bold',
+            'hover:text-primary-500 border-b border-border py-3 pl-6 md:font-bold',
             pathname === href && 'bg-secondary'
           ]}
           onclick={() => (open = false)}
