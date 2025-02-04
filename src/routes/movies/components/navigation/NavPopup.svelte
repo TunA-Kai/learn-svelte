@@ -25,7 +25,7 @@
 </script>
 
 <Popover.Root {open} onOpenChange={(o) => (open = o)}>
-  <Popover.Trigger class="h-10">
+  <Popover.Trigger class="h-full">
     <Icon />
   </Popover.Trigger>
 

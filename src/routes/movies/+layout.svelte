@@ -1,8 +1,8 @@
 <script lang="ts">
   import { ModeWatcher } from 'mode-watcher';
   import type { LayoutProps } from './$types';
-  import { Search } from 'lucide-svelte';
   import NavPopup from './components/navigation/NavPopup.svelte';
+  import SearchPopup from './components/navigation/SearchPopup.svelte';
 
   let { children }: LayoutProps = $props();
 </script>
@@ -18,6 +18,6 @@
       class="w-24 dark:[filter:invert(1)_brightness(3)]"
     />
   </a>
-  <Search />
+  <SearchPopup />
 </nav>
 {@render children?.()}
