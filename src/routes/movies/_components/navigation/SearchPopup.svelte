@@ -14,17 +14,13 @@
   <Popover.Content
     class={[
       'w-screen overflow-hidden rounded-none border-none transition-all duration-500 md:hidden',
-      open ? 'opacity-100' : 'opacity-0'
+      open ? 'translate-y-28 opacity-100' : 'translate-y-0 opacity-0'
     ]}
-    sideOffset={0}
+    sideOffset={-120}
     forceMount
   >
     <div class="flex overflow-hidden rounded-lg">
-      <input
-        type="text"
-        class="flex-grow bg-input px-4 focus:outline-none"
-        placeholder="Search"
-      />
+      <input type="text" class="flex-grow bg-input px-4 focus:outline-none" placeholder="Search" />
       <div class="grid h-10 w-10 place-items-center bg-[#f7ef47]">
         <SearchIcon color="#000" size={20} />
       </div>

@@ -23,7 +23,7 @@
   <div class="flex h-[calc(100vh_-_40px)]">
     {#each movieList as movie (movie.id)}
       <div
-        class="relative min-w-0 shrink-0 basis-full bg-cover bg-center"
+        class="relative min-w-0 shrink-0 basis-full bg-cover bg-center text-white"
         style:background-image="url({createBackgroundPath(movie.backdrop_path)})"
       >
         <div class="absolute inset-0 bg-[#050607b3]"></div>
