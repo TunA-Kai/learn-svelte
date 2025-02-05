@@ -1,8 +1,8 @@
 <script lang="ts">
   import { ModeWatcher } from 'mode-watcher';
   import type { LayoutProps } from './$types';
-  import NavPopup from './components/navigation/NavPopup.svelte';
-  import SearchPopup from './components/navigation/SearchPopup.svelte';
+  import NavPopup from './_components/navigation/NavPopup.svelte';
+  import SearchPopup from './_components/navigation/SearchPopup.svelte';
 
   let { children }: LayoutProps = $props();
 </script>

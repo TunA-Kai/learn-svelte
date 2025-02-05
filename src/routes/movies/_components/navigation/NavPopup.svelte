@@ -25,13 +25,13 @@
 </script>
 
 <Popover.Root {open} onOpenChange={(o) => (open = o)}>
-  <Popover.Trigger class="h-full">
+  <Popover.Trigger class="h-full md:hidden">
     <Icon />
   </Popover.Trigger>
 
   <Popover.Content
     class={[
-      'w-screen overflow-hidden rounded-none border-none p-0 transition-all duration-500 md:h-auto',
+      'w-screen overflow-hidden rounded-none border-none p-0 transition-all duration-500 md:hidden',
       open ? 'h-[calc(100vh_-_40px)] opacity-100' : 'h-0 opacity-0'
     ]}
     sideOffset={0}
