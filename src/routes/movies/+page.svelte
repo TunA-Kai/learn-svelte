@@ -1,33 +1,28 @@
 <script lang="ts">
-  import emblaCarouselSvelte from 'embla-carousel-svelte';
-  import EmblaFade from 'embla-carousel-fade';
-  import Autoplay from 'embla-carousel-autoplay';
-  import type { PageProps } from './$types';
   import Button from '$lib/components/ui/button/button.svelte';
+  import type { Movie } from '$lib/types';
+  import { createBackgroundPath, createPosterPath } from '$lib/utils';
+  import Autoplay from 'embla-carousel-autoplay';
+  import EmblaFade from 'embla-carousel-fade';
+  import emblaCarouselSvelte from 'embla-carousel-svelte';
+  import { StarIcon } from 'lucide-svelte';
+  import type { PageProps } from './$types';
 
   const plugins = [EmblaFade(), Autoplay()];
 
   let { data }: PageProps = $props();
-  const movieList = $derived(data.movieList);
-
-  function createBackgroundPath(path: string) {
-    return `https://image.tmdb.org/t/p/original${path}`;
-  }
-
-  function createPosterPath(path: string) {
-    return `https://image.tmdb.org/t/p/w300_and_h450_face${path}`;
-  }
+  const { popularList, upcomingList, topRatedList } = data;
 </script>
 
-<div class="overflow-hidden" use:emblaCarouselSvelte={{ plugins, options: {} }}>
-  <div class="flex h-[calc(100vh_-_40px)]">
-    {#each movieList as movie (movie.id)}
+<section class="overflow-hidden" use:emblaCarouselSvelte={{ plugins, options: {} }}>
+  <div class="flex h-screen">
+    {#each popularList as movie (movie.id)}
       <div
         class="relative min-w-0 shrink-0 basis-full bg-cover bg-center text-white"
         style:background-image="url({createBackgroundPath(movie.backdrop_path)})"
       >
         <div class="absolute inset-0 bg-[#050607b3]"></div>
-        <div class="relative px-6 pt-6">
+        <div class="relative px-6 pt-16">
           <img
             src={createPosterPath(movie.poster_path)}
             alt={movie.title}
@@ -50,4 +45,37 @@
       </div>
     {/each}
   </div>
-</div>
+</section>
+
+{@render movieSection(upcomingList, 'Upcoming Movies', '/upcoming')}
+
+{@render movieSection(topRatedList, 'Top Rated Movies', '/top-rated')}
+
+<p class="mb-6 mt-12 text-center">Made with SvelteKit</p>
+
+{#snippet movieSection(list: Movie[], title: string, href: string)}
+  <section class="mt-12 px-6">
+    <h2 class="text-center text-xl font-bold">{title}</h2>
+    <div class="mt-8 grid grid-cols-2 gap-4">
+      {#each list.slice(0, 10) as movie (movie.id)}
+        <div class="relative">
+          <div class="absolute left-0 top-0 flex items-center gap-2 bg-destructive px-2 py-1">
+            <StarIcon size={16} />
+            {movie.vote_average.toFixed(1)}
+          </div>
+          <img
+            src={createPosterPath(movie.poster_path)}
+            alt={movie.title}
+            class="w-full rounded-md"
+          />
+          <h3 class="mt-2 overflow-hidden text-ellipsis whitespace-nowrap text-sm font-semibold">
+            {movie.title}
+          </h3>
+          <p class="text-sm">{movie.release_date.split('-')[0]}</p>
+        </div>
+      {/each}
+    </div>
+
+    <Button href={`/movies/${href}`} class="mx-auto mt-8 block w-fit">View All {title}</Button>
+  </section>
+{/snippet}
