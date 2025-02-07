@@ -5,8 +5,8 @@
   import Autoplay from 'embla-carousel-autoplay';
   import EmblaFade from 'embla-carousel-fade';
   import emblaCarouselSvelte from 'embla-carousel-svelte';
-  import { StarIcon } from 'lucide-svelte';
   import type { PageProps } from './$types';
+  import MovieCard from './_components/MovieCard.svelte';
 
   const plugins = [EmblaFade(), Autoplay()];
 
@@ -51,28 +51,12 @@
 
 {@render movieSection(topRatedList, 'Top Rated Movies', '/top-rated')}
 
-<p class="mb-6 mt-12 text-center">Made with SvelteKit</p>
-
 {#snippet movieSection(list: Movie[], title: string, href: string)}
   <section class="mt-12 px-6">
     <h2 class="text-center text-xl font-bold">{title}</h2>
     <div class="mt-8 grid grid-cols-2 gap-4">
       {#each list.slice(0, 10) as movie (movie.id)}
-        <div class="relative">
-          <div class="absolute left-0 top-0 flex items-center gap-2 bg-destructive px-2 py-1">
-            <StarIcon size={16} />
-            {movie.vote_average.toFixed(1)}
-          </div>
-          <img
-            src={createPosterPath(movie.poster_path)}
-            alt={movie.title}
-            class="w-full rounded-md"
-          />
-          <h3 class="mt-2 overflow-hidden text-ellipsis whitespace-nowrap text-sm font-semibold">
-            {movie.title}
-          </h3>
-          <p class="text-sm">{movie.release_date.split('-')[0]}</p>
-        </div>
+        <MovieCard {movie} />
       {/each}
     </div>
 

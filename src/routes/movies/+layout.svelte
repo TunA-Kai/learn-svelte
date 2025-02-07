@@ -39,3 +39,5 @@
 </nav>
 
 {@render children?.()}
+
+<p class="mb-6 mt-12 text-center">Made with SvelteKit</p>
