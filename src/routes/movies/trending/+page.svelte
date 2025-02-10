@@ -5,10 +5,12 @@
   import { TMDBHost } from '$lib/constants';
   import { PUBLIC_API_KEY } from '$env/static/public';
   import { debounce } from '$lib/utils';
+  import LoadingOverlay from '../_components/LoadingOverlay.svelte';
 
   let { data }: PageProps = $props();
   let page = $state(data.page);
   let movies = $state(data.results);
+  let isLoading = $state(false);
 
   async function fetchData(page: number) {
     const response = await fetch(
@@ -17,15 +19,17 @@
 
     const data = await response.json();
 
-    movies = [...movies, ...data.results];
+    return data;
   }
 
-  const debouncedFetchData = debounce(() => {
+  const debouncedFetchData = debounce(async () => {
     page++;
-    fetchData(page);
+    const data = await fetchData(page);
+    movies = [...movies, ...data.results];
+    isLoading = false;
   }, 1000);
 
-  function handleWindowScroll() {
+  async function handleWindowScroll() {
     const scrollingElement = document.scrollingElement || document.documentElement;
 
     const scrollTop = scrollingElement.scrollTop;
@@ -33,6 +37,7 @@
     const scrollHeight = scrollingElement.scrollHeight;
 
     if (Math.ceil(scrollTop + clientHeight) >= scrollHeight - 1) {
+      isLoading = true;
       debouncedFetchData();
     }
   }
@@ -56,3 +61,7 @@
     <MovieCard {movie} />
   {/each}
 </div>
+
+{#if isLoading}
+  <LoadingOverlay />
+{/if}
