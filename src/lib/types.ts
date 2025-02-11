@@ -28,3 +28,35 @@ export interface Person {
   profile_path: string;
   known_for: Movie[];
 }
+
+export interface Actor {
+  adult: boolean;
+  also_known_as: string[];
+  biography: string;
+  birthday: string | null;
+  deathday: string | null;
+  gender: number;
+  homepage: string | null;
+  id: number;
+  imdb_id: string;
+  known_for_department: string;
+  name: string;
+  place_of_birth: string;
+  popularity: number;
+  profile_path: string | null;
+  images: ImageCollection;
+}
+
+interface ImageCollection {
+  profiles: ProfileImage[];
+}
+
+interface ProfileImage {
+  aspect_ratio: number;
+  height: number;
+  iso_639_1: string | null;
+  file_path: string;
+  vote_average: number;
+  vote_count: number;
+  width: number;
+}

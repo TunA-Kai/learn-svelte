@@ -23,10 +23,15 @@
 
 <div class="mt-8 grid grid-cols-2 gap-4">
   {#each peopleList as person (person.id)}
-    <div>
+    <button
+      type="button"
+      onclick={() => goto(`/movies/people/${person.id}`)}
+      class="cursor-pointer"
+      aria-label={`View details for ${person.name}`}
+    >
       <img src={`https://image.tmdb.org/t/p/w500${person.profile_path}`} alt={person.name} />
       <p>{person.name}</p>
-    </div>
+    </button>
   {/each}
 </div>
 
