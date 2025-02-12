@@ -1,12 +1,20 @@
 <script lang="ts">
   import { SearchIcon, XIcon } from 'lucide-svelte';
   import * as Popover from '$lib/components/ui/popover';
+  import { goto } from '$app/navigation';
 
   let open = $state(false);
   let Icon = $derived(open ? XIcon : SearchIcon);
+
+  let query = $state('');
+
+  function handleClickSearch() {
+    open = false;
+    goto(`/movies/search?query=${query}`);
+  }
 </script>
 
-<Popover.Root {open} onOpenChange={(o) => (open = o)}>
+<Popover.Root {open} onOpenChange={(o: boolean) => (open = o)}>
   <Popover.Trigger class="h-full md:hidden">
     <Icon />
   </Popover.Trigger>
@@ -20,10 +28,21 @@
     forceMount
   >
     <div class="flex overflow-hidden rounded-lg">
-      <input type="text" class="flex-grow bg-input px-4 focus:outline-none" placeholder="Search" />
-      <div class="grid h-10 w-10 place-items-center bg-[#f7ef47]">
+      <input
+        type="text"
+        class="flex-grow bg-input px-4 focus:outline-none"
+        placeholder="Search"
+        value={query}
+        oninput={(e) => (query = e.currentTarget.value)}
+        onkeydown={(e) => e.key === 'Enter' && handleClickSearch()}
+      />
+      <button
+        class="grid h-10 w-10 place-items-center bg-[#f7ef47]"
+        onclick={handleClickSearch}
+        aria-label="Search"
+      >
         <SearchIcon color="#000" size={20} />
-      </div>
+      </button>
     </div>
   </Popover.Content>
 </Popover.Root>
