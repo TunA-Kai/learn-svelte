@@ -12,8 +12,6 @@
 
   let input: HTMLInputElement;
 
-  $inspect(open);
-
   function handleClickSearch() {
     const localSearchQuery = JSON.parse(localStorage.getItem('searchQuery') || '[]');
     const newLocalSearchQuery = Array.from(new Set([query, ...localSearchQuery])).slice(0, 3);

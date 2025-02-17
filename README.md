@@ -4,7 +4,7 @@
 - [x] ~~People detail page~~
 - [x] ~~Implement search page~~
 - [x] ~~Implement previous seach popup~~
-- [ ] Implement favorite functionality
+- [x] ~~Implement favorite functionality~~
 - [ ] Favorite page
 - [ ] Back to top button
 

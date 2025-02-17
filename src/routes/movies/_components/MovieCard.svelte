@@ -1,16 +1,22 @@
 <script lang="ts">
-  import { StarIcon } from 'lucide-svelte';
+  import { HeartIcon, StarIcon } from 'lucide-svelte';
   import type { Movie } from '$lib/types';
   import { createPosterPath } from '$lib/utils';
+  import { favoriteFilms } from '../_store/favorite.svelte';
 
   interface MovieCardProps {
     movie: Movie;
   }
 
   let { movie }: MovieCardProps = $props();
+  let isFavorite = $derived(favoriteFilms.isFavorite(movie.id));
 
   function formatReleaseDate(date?: string) {
     return date?.split('-')[0] ?? 'No date';
+  }
+
+  function handleToggleFavorites() {
+    isFavorite ? favoriteFilms.remove(movie.id) : favoriteFilms.add(movie.id);
   }
 </script>
 
@@ -24,4 +30,7 @@
     {movie.title || movie.name}
   </h3>
   <p class="text-sm">{formatReleaseDate(movie.release_date || movie.first_air_date)}</p>
+  <button aria-label="Add to favorites" onclick={handleToggleFavorites}>
+    <HeartIcon class={isFavorite ? 'fill-red-500 text-red-500' : ''} />
+  </button>
 </div>
