@@ -5,7 +5,9 @@
 
   let open = $state(false);
   let showRecentSearches = $state(false);
-  let recentSearches = $state(JSON.parse(localStorage.getItem('searchQuery') || '[]'));
+  let recentSearches = $state(
+    typeof window !== 'undefined' ? JSON.parse(localStorage.getItem('searchQuery') || '[]') : []
+  );
   let Icon = $derived(open ? XIcon : SearchIcon);
 
   let query = $state('');

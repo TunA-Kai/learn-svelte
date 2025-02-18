@@ -2,7 +2,12 @@ class FavoriteFilms {
   #data = $state<number[]>([]);
 
   constructor() {
-    this.#data = JSON.parse(localStorage?.getItem('favoriteFilms') || '[]');
+    try {
+      // NOTE: on server side localStorage is not available
+      this.#data = JSON.parse(localStorage.getItem('favoriteFilms') || '[]');
+    } catch (e) {
+      this.#data = [];
+    }
   }
 
   get data() {
