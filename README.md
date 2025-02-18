@@ -7,6 +7,11 @@
 - [x] ~~Implement favorite functionality~~
 - [x] ~~Favorite page~~
 - [x] ~~Back to top button~~
+- [ ] Add styles for existing page
+- [ ] Add styles for tablet view
+- [ ] Add styles for desktop view
+- [ ] Add content for discover, popular, top rated, upcoming, tv shows page
+- [ ] Add genres page
 
 # BUG
 
