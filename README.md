@@ -5,8 +5,8 @@
 - [x] ~~Implement search page~~
 - [x] ~~Implement previous seach popup~~
 - [x] ~~Implement favorite functionality~~
-- [ ] Favorite page
-- [ ] Back to top button
+- [x] ~~Favorite page~~
+- [x] ~~Back to top button~~
 
 # BUG
 

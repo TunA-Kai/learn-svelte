@@ -4,13 +4,23 @@
   import type { LayoutProps } from './$types';
   import NavPopup from './_components/navigation/NavPopup.svelte';
   import SearchPopup from './_components/navigation/SearchPopup.svelte';
+  import Button from '$lib/components/ui/button/button.svelte';
+  import { ArrowUp } from 'lucide-svelte';
 
   let { children }: LayoutProps = $props();
 
   let isScrolled = $state(false);
+  let shouldShowBackToTop = $state(false);
 
   function handleWindowScroll() {
     isScrolled = window.scrollY > 0;
+
+    // calculate if user scroll pass 1.3 times the height of the viewport
+    if (window.scrollY > window.innerHeight * 1.3) {
+      shouldShowBackToTop = true;
+    } else {
+      shouldShowBackToTop = false;
+    }
   }
 
   onMount(() => {
@@ -21,6 +31,10 @@
       window.removeEventListener('scroll', handleWindowScroll);
     };
   });
+
+  function handleScrollToTop() {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
 </script>
 
 <ModeWatcher defaultMode="dark" />
@@ -41,3 +55,10 @@
 {@render children?.()}
 
 <p class="mb-6 mt-12 text-center">Made with SvelteKit</p>
+
+<Button
+  class={['fixed bottom-4 right-4 transition-all', shouldShowBackToTop ? 'scale-1' : 'scale-0']}
+  onclick={handleScrollToTop}
+>
+  <ArrowUp />
+</Button>
