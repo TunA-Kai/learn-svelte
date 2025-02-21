@@ -52,16 +52,18 @@
   });
 </script>
 
-<h1 class="pt-20">Trending Movies</h1>
+<main class="px-6">
+  <h1 class="pt-20 text-xl font-semibold">Trending Movies</h1>
 
-{data.total_results} Movies
+  {data.total_results} Movies
 
-<div class="mt-8 grid grid-cols-2 gap-4">
-  {#each movies as movie (movie.id)}
-    <MovieCard {movie} />
-  {/each}
-</div>
+  <div class="mt-8 grid grid-cols-2 gap-4">
+    {#each movies as movie (movie.id)}
+      <MovieCard {movie} />
+    {/each}
+  </div>
 
-{#if isLoading}
-  <LoadingOverlay />
-{/if}
+  {#if isLoading}
+    <LoadingOverlay />
+  {/if}
+</main>

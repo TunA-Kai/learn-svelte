@@ -17,19 +17,21 @@
   );
 </script>
 
-<h1 class="mt-20">Favorite Movies</h1>
-{#if data.length}
-  {#await promise}
-    <Loader class="mx-auto animate-spin" />
-  {:then movies}
-    {#if movies.length}
-      <div class="mt-4 grid grid-cols-2 gap-4">
-        {#each movies as movie (movie.id)}
-          <MovieCard {movie} />
-        {/each}
-      </div>
-    {:else}
-      <p>No favorite movies found</p>
-    {/if}
-  {/await}
-{/if}
+<main class="px-6">
+  <h1 class="mt-20 text-xl font-semibold">Favorite Movies</h1>
+  {#if data.length}
+    {#await promise}
+      <Loader class="mx-auto animate-spin" />
+    {:then movies}
+      {#if movies.length}
+        <div class="mt-4 grid grid-cols-2 gap-4">
+          {#each movies as movie (movie.id)}
+            <MovieCard {movie} />
+          {/each}
+        </div>
+      {:else}
+        <p>No favorite movies found</p>
+      {/if}
+    {/await}
+  {/if}
+</main>

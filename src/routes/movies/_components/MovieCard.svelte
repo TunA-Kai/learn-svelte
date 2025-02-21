@@ -29,8 +29,10 @@
   <h3 class="mt-2 overflow-hidden text-ellipsis whitespace-nowrap text-sm font-semibold">
     {movie.title || movie.name}
   </h3>
-  <p class="text-sm">{formatReleaseDate(movie.release_date || movie.first_air_date)}</p>
-  <button aria-label="Add to favorites" onclick={handleToggleFavorites}>
-    <HeartIcon class={isFavorite ? 'fill-red-500 text-red-500' : ''} />
-  </button>
+  <div class="flex items-center justify-between">
+    <p class="text-sm">{formatReleaseDate(movie.release_date || movie.first_air_date)}</p>
+    <button aria-label="Add to favorites" onclick={handleToggleFavorites}>
+      <HeartIcon size={16} class={isFavorite ? 'fill-red-500 text-red-500' : ''} />
+    </button>
+  </div>
 </div>
