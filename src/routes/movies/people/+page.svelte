@@ -18,27 +18,25 @@
   const handleNext = () => handleNavigation('next');
 </script>
 
-<main class="px-6">
-  <h1 class="pt-20 text-xl font-semibold">Popular People</h1>
-  <p>{data.total_results} people</p>
+<h1 class="pt-20 text-xl font-semibold">Popular People</h1>
+<p>{data.total_results} people</p>
 
-  <div class="mt-8 grid grid-cols-2 gap-4">
-    {#each peopleList as person (person.id)}
-      <button
-        type="button"
-        onclick={() => goto(`/movies/people/${person.id}`)}
-        class="cursor-pointer"
-        aria-label={`View details for ${person.name}`}
-      >
-        <img src={`https://image.tmdb.org/t/p/w500${person.profile_path}`} alt={person.name} />
-        <p>{person.name}</p>
-      </button>
-    {/each}
-  </div>
+<div class="mt-8 grid grid-cols-2 gap-4">
+  {#each peopleList as person (person.id)}
+    <button
+      type="button"
+      onclick={() => goto(`/movies/people/${person.id}`)}
+      class="cursor-pointer"
+      aria-label={`View details for ${person.name}`}
+    >
+      <img src={`https://image.tmdb.org/t/p/w500${person.profile_path}`} alt={person.name} />
+      <p>{person.name}</p>
+    </button>
+  {/each}
+</div>
 
-  <div class="mt-8 flex items-center justify-center gap-4">
-    <Button onclick={handlePrev}>Prev</Button>
-    <div>{data.page}</div>
-    <Button onclick={handleNext}>Next</Button>
-  </div>
-</main>
+<div class="mt-8 flex items-center justify-center gap-4">
+  <Button onclick={handlePrev}>Prev</Button>
+  <div>{data.page}</div>
+  <Button onclick={handleNext}>Next</Button>
+</div>

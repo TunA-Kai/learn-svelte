@@ -52,7 +52,9 @@
   <SearchPopup />
 </nav>
 
-{@render children?.()}
+<main class="px-6">
+  {@render children?.()}
+</main>
 
 <p class="mb-6 mt-12 text-center">Made with SvelteKit</p>
 

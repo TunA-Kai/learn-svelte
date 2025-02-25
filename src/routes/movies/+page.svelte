@@ -14,7 +14,7 @@
   const { popularList, upcomingList, topRatedList } = data;
 </script>
 
-<section class="overflow-hidden" use:emblaCarouselSvelte={{ plugins, options: {} }}>
+<section class="-mx-6 overflow-hidden" use:emblaCarouselSvelte={{ plugins, options: {} }}>
   <div class="flex h-screen">
     {#each popularList as movie (movie.id)}
       <div
@@ -52,7 +52,7 @@
 {@render movieSection(topRatedList, 'Top Rated Movies', '/top-rated')}
 
 {#snippet movieSection(list: Movie[], title: string, href: string)}
-  <section class="mt-12 px-6">
+  <section class="mt-12">
     <h2 class="text-center text-xl font-bold">{title}</h2>
     <div class="mt-8 grid grid-cols-2 gap-4">
       {#each list.slice(0, 10) as movie (movie.id)}
